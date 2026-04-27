@@ -69,6 +69,9 @@ export function AppointmentCard({
           <strong>Date & Time Of Message:</strong>{" "}
           {formatDateTime(appointment.messageDateTime || appointment.createdAt)}
         </p>
+        <p className="text-violet-600 dark:text-violet-300">
+          Note: Kindly send a reply after receiving the message / email.
+        </p>
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">

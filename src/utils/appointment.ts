@@ -20,6 +20,8 @@ export function generateReferenceId(existing: Appointment[]): string {
   return value;
 }
 
+const replyNote = "Note: Kindly send a reply after receiving the message / email.";
+
 export function toWhatsappMessage(appointment: Appointment): string {
   return [
     `Appointment / Message Ref: ${appointment.referenceId}`,
@@ -31,6 +33,8 @@ export function toWhatsappMessage(appointment: Appointment): string {
     `Date: ${appointment.appointmentDate}`,
     `Time: ${appointment.appointmentTime}`,
     `Priority: ${appointment.priority}`,
+    ``,
+    replyNote,
   ].join("\n");
 }
 
@@ -55,6 +59,8 @@ export function emailUrl(appointment: Appointment): string {
     ``,
     `Schedule: ${appointment.appointmentDate} at ${appointment.appointmentTime}`,
     `Priority: ${appointment.priority}`,
+    ``,
+    replyNote,
   ];
   return `mailto:${encodeURIComponent(appointment.emailAddress || "")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }

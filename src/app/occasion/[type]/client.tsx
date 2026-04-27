@@ -153,6 +153,7 @@ export function OccasionFormClient({ type }: { type: string }) {
     );
   }
 
+  const replyNote = "Note: Kindly send a reply after receiving the message / email.";
   const resolvedMessage = formatOccasionTemplate({
     toName: form.toName,
     senderName: form.senderName,
@@ -160,6 +161,7 @@ export function OccasionFormClient({ type }: { type: string }) {
     occasionType: occasion.type,
     customMessage: form.message,
   });
+  const resolvedMessageWithNote = `${resolvedMessage}\n\n${replyNote}`;
 
   const handleSave = (event: FormEvent) => {
     event.preventDefault();
@@ -194,11 +196,11 @@ export function OccasionFormClient({ type }: { type: string }) {
   };
 
   const handleWhatsapp = () => {
-    window.open(occasionWhatsappUrl(resolvedMessage), "_blank", "noopener,noreferrer");
+    window.open(occasionWhatsappUrl(resolvedMessageWithNote), "_blank", "noopener,noreferrer");
   };
 
   const handleEmail = () => {
-    window.location.href = occasionEmailUrl(resolvedMessage);
+    window.location.href = occasionEmailUrl(resolvedMessageWithNote);
   };
 
   const handleDelete = () => {
@@ -373,7 +375,7 @@ export function OccasionFormClient({ type }: { type: string }) {
 
             <div className="rounded-lg border border-purple-200 bg-purple-50/80 p-3 text-sm text-slate-800">
               <p className="mb-2 font-semibold">Generated Preview</p>
-              <pre className="whitespace-pre-wrap font-sans">{resolvedMessage}</pre>
+              <pre className="whitespace-pre-wrap font-sans">{resolvedMessageWithNote}</pre>
             </div>
 
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
